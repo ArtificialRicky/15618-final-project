@@ -14,7 +14,7 @@
 
   <main>
     <section>
-      <h2>🧠 Project Summary</h2>
+      <h2>Project Summary</h2>
       <p>
         We implement and optimize multi-node tensor parallelism for Transformer inference using MPI. 
         By replacing built-in collectives with custom Ring AllReduce and Recursive Doubling algorithms, 
@@ -24,7 +24,7 @@
     </section>
 
     <section>
-      <h2>📚 Background & Motivation</h2>
+      <h2>Background & Motivation</h2>
       <p>
         Tensor parallelism in large Transformer models often suffers from communication bottlenecks, 
         especially during inference. This project explores custom MPI-based collectives to minimize 
@@ -33,7 +33,7 @@
     </section>
 
     <section>
-      <h2>🚧 Challenges</h2>
+      <h2>Challenges</h2>
       <ul>
         <li>Attention requires global communication among all positions, which is hard to parallelize.</li>
         <li>Variable-length sequences can cause load imbalance across nodes.</li>
@@ -41,7 +41,7 @@
     </section>
 
     <section>
-      <h2>🎯 Goals</h2>
+      <h2>Goals</h2>
       <ul>
         <li>Implement Ring AllReduce and Recursive Doubling for tensor parallelism.</li>
         <li>Compare custom collectives with built-in MPI_Allreduce.</li>
@@ -50,7 +50,7 @@
     </section>
 
     <section>
-      <h2>🧪 Platform & Resources</h2>
+      <h2>Platform & Resources</h2>
       <p>
         We use GPU clusters with MPI support (GHC, PSC). Our experiments will be based on open-source models 
         such as Meta's LLaMA, focusing on inference. Code will be written in C++ or Python depending on the 
@@ -59,7 +59,7 @@
     </section>
 
     <section>
-      <h2>🗓️ Schedule</h2>
+      <h2>Schedule</h2>
       <ul>
         <li><strong>Mar 25–31</strong>: Research + environment setup</li>
         <li><strong>Apr 1–7</strong>: Baseline AllReduce tests</li>
