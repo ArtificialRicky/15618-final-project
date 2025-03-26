@@ -1,11 +1,80 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My Project Page</title>
-  </head>
-  <body>
-    <h1>Hello GitHub Pages!</h1>
-  </body>
-</html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MPI-Based Multi-Node Tensor Parallelism</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>MPI-Based Multi-Node Tensor Parallelism</h1>
+    <p class="team">Team: Ruiqi Yang, Zijia Liu</p>
+  </header>
 
+  <main>
+    <section>
+      <h2>🧠 Project Summary</h2>
+      <p>
+        We implement and optimize multi-node tensor parallelism for Transformer inference using MPI. 
+        By replacing built-in collectives with custom Ring AllReduce and Recursive Doubling algorithms, 
+        we aim to overlap GPU computation with inter-node communication and evaluate the efficiency of 
+        attention mechanisms such as Ring Attention.
+      </p>
+    </section>
+
+    <section>
+      <h2>📚 Background & Motivation</h2>
+      <p>
+        Tensor parallelism in large Transformer models often suffers from communication bottlenecks, 
+        especially during inference. This project explores custom MPI-based collectives to minimize 
+        synchronization overhead and maximize throughput, without relying on training.
+      </p>
+    </section>
+
+    <section>
+      <h2>🚧 Challenges</h2>
+      <ul>
+        <li>Attention requires global communication among all positions, which is hard to parallelize.</li>
+        <li>Variable-length sequences can cause load imbalance across nodes.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🎯 Goals</h2>
+      <ul>
+        <li>Implement Ring AllReduce and Recursive Doubling for tensor parallelism.</li>
+        <li>Compare custom collectives with built-in MPI_Allreduce.</li>
+        <li>Explore parallel sequence inference and dynamic load balancing.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧪 Platform & Resources</h2>
+      <p>
+        We use GPU clusters with MPI support (GHC, PSC). Our experiments will be based on open-source models 
+        such as Meta's LLaMA, focusing on inference. Code will be written in C++ or Python depending on the 
+        framework used.
+      </p>
+    </section>
+
+    <section>
+      <h2>🗓️ Schedule</h2>
+      <ul>
+        <li><strong>Mar 25–31</strong>: Research + environment setup</li>
+        <li><strong>Apr 1–7</strong>: Baseline AllReduce tests</li>
+        <li><strong>Apr 8–14</strong>: Implement + integrate Ring AllReduce</li>
+        <li><strong>Apr 15</strong>: Midpoint milestone</li>
+        <li><strong>Apr 15–21</strong>: Parallel sequences + load balancing</li>
+        <li><strong>Apr 22–28</strong>: Final testing + report + poster</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>&copy; <span id="year"></span> Ruiqi Yang & Zijia Liu</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
