@@ -57,6 +57,22 @@
     </section>
 
     <section>
+      <h2>Resources</h2>
+      <p>
+        We will use GPU resources provided by GHC and PSC for this project, and we will also attempt to request access to university-provided GPU nodes or use the GPU on a personal laptop when necessary. All computing environments should support MPI-based communication. For code, we will modify existing open-source language models, such as Meta’s LLaMA model, and replace the original attention mechanism with our custom parallel attention variants, such as Ring Attention. Since our project focuses on inference only and does not require training, our demand for computational resources is relatively low.
+      </p>
+      <p>
+        References:
+        <ul>
+          <li>Vaswani et al., 2017. Attention Is All You Need.
+          <li>Shoeybi et al., 2019. Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism
+          <li>Dao et al., 2022. FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness
+          <li>Touvron et al., 2023. LLaMA: Open and Efficient Foundation Language Models
+        </ul>
+      </p>
+    </section>
+
+    <section>
       <h2>Goals</h2>
       <ul>
         <li>Implement Ring AllReduce and Recursive Doubling for tensor parallelism.</li>
