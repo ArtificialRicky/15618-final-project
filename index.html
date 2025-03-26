@@ -64,41 +64,44 @@
       <p>
         References:
         <ul>
-          <li>Vaswani et al., 2017. Attention Is All You Need.
-          <li>Shoeybi et al., 2019. Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism
-          <li>Dao et al., 2022. FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness
-          <li>Touvron et al., 2023. LLaMA: Open and Efficient Foundation Language Models
+          <li>Vaswani et al., 2017. Attention Is All You Need.</li>
+          <li>Shoeybi et al., 2019. Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism.</li>
+          <li>Dao et al., 2022. FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness.</li>
+          <li>Touvron et al., 2023. LLaMA: Open and Efficient Foundation Language Models.</li>
         </ul>
       </p>
     </section>
 
     <section>
-      <h2>Goals</h2>
-      <ul>
-        <li>Implement Ring AllReduce and Recursive Doubling for tensor parallelism.</li>
-        <li>Compare custom collectives with built-in MPI_Allreduce.</li>
-        <li>Explore parallel sequence inference and dynamic load balancing.</li>
-      </ul>
+      <h2>Goals and Deliverables</h2>
+      <p>
+        PLAN TO ACHIEVE:<br>Our primary goal is to implement two custom collective communication strategies—Ring AllReduce and Recursive Doubling—to replace built-in MPI collectives in the context of transformer inference with tensor parallelism. We aim to integrate these into the attention computation pipeline and compare their performance (latency, bandwidth usage, and memory footprint) against standard MPI AllReduce. A successful baseline would demonstrate that our custom implementations match or outperform built-in collectives in controlled test cases
+      </p>
+      <p>
+        HOPE TO ACHIEVE:<br>We hope to extend our implementation to support multiple input sequences in parallel, simulating pipeline parallelism at the inference level. We also hope to explore simple dynamic workload balancing techniques to address sequence-length variability across nodes.
+      </p>
     </section>
 
     <section>
-      <h2>Platform & Resources</h2>
+      <h2>Platform Choice</h2>
       <p>
-        We use GPU clusters with MPI support (GHC, PSC). Our experiments will be based on open-source models 
-        such as Meta's LLaMA, focusing on inference. Code will be written in C++ or Python depending on the 
-        framework used.
+        We chose to implement our system on GPU- and MPI-enabled cluster platforms (e.g., GHC and PSC resources), as it involves both GPU-intensive computation and inter-node communication.
+      </p>
+      <p>
+        We will use either C++ or Python to implement the communication and model inference tasks, depending on which LLM framework provides better abstraction. This will allow us to implement AllReduce and Scatter-Reduce communication strategies while more conveniently distributing and loading model parameters across the cluster and managing tensors efficiently.
       </p>
     </section>
 
     <section>
       <h2>Schedule</h2>
       <ul>
-        <li><strong>Mar 25–31</strong>: Research + environment setup</li>
-        <li><strong>Apr 1–7</strong>: Baseline AllReduce tests</li>
-        <li><strong>Apr 8–14</strong>: Implement + integrate Ring AllReduce</li>
-        <li><strong>Apr 15</strong>: Midpoint milestone</li>
-        <li><strong>Apr 15–21</strong>: Parallel sequences + load balancing</li>
-        <li><strong>Apr 22–28</strong>: Final testing + report + poster</li>
+        <li><strong>Mar 25–31</strong>: Study communication mechanisms in Megatron-LM, FlashAttention, and Ring Attention; set up the development environment</li>
+        <li><strong>Apr 1–7</strong>: Complete baseline tests for AllReduce.</li>
+        <li><strong>Apr 8–14</strong>:  Implement a minimal MPI communication framework and verify both Ring AllReduce and Recursive Doubling;<br>Integrate Ring AllReduce into the attention inference pipeline;<br>
+                                        Compare MPI_Allreduce with the custom Ring implementation;<br>Prepare materials for the midpoint presentation.</li>
+        <li><strong>Apr 15</strong>: Submit baseline implementation and preliminary evaluation (correctness + throughput comparison).</li>
+        <li><strong>Apr 15–21</strong>: Extend support for multiple input sequences in parallel;<br>Analyze load imbalance across sequences and explore basic dynamic scheduling strategies.</li>
+        <li><strong>Apr 22–28</strong>: Complete performance testing of all communication strategies;<br>Write the final report and prepare the project poster</li>
       </ul>
     </section>
 
