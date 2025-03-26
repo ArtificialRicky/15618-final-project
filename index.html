@@ -16,19 +16,30 @@
     <section>
       <h2>Project Summary</h2>
       <p>
-        We implement and optimize multi-node tensor parallelism for Transformer inference using MPI. 
-        By replacing built-in collectives with custom Ring AllReduce and Recursive Doubling algorithms, 
-        we aim to overlap GPU computation with inter-node communication and evaluate the efficiency of 
-        attention mechanisms such as Ring Attention.
+        We will implement a multi-node tensor parallelism and focus on communication optimization with MPI.
+        By replacing built-in collective operations with optimized AllReduce and Scatter-Reduce algorithms, 
+        we aim to gain fine-grained control over communication and explore strategies that overlap GPU 
+        computation with inter-node data exchange. This allows us to evaluate the correctness, memory 
+        efficiency, and performance of parallel attention mechanisms without requiring model training.
       </p>
     </section>
 
     <section>
-      <h2>Background & Motivation</h2>
+      <h2>Background</h2>
       <p>
-        Tensor parallelism in large Transformer models often suffers from communication bottlenecks, 
-        especially during inference. This project explores custom MPI-based collectives to minimize 
-        synchronization overhead and maximize throughput, without relying on training.
+        In modern Transformer models, one of the biggest challenges during multi-node distributed 
+        inference is the communication overhead, which slows down system performance. This is 
+        especially true when tensor parallelism is used to split the model across multiple devices, 
+        as the devices need to share and combine data. For example, different GPUs might store pieces 
+        of the weights for a certain layer of the model, and they need to communicate to merge the 
+        results at each computation step. This communication can cause delays and waste resources in 
+        large-scale setups. This project aims to improve the way data is shared between devices during 
+        Transformer inference. We’re developing custom methods, like AllReduce and Scatter-Reduce, based 
+        on MPI, to replace the standard communication methods used in existing libraries (like 
+        MPI_Allreduce). We plan to implement strategies like Ring AllReduce and Recursive Doubling and 
+        explore ways to overlap communication with GPU computation. By doing this, we hope to reduce 
+        the impact of communication delays. Our goal is to perform communication tasks, such as sending 
+        and receiving data, at the same time as the computation, so that they don’t slow each other down.
       </p>
     </section>
 
