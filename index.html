@@ -45,10 +45,15 @@
 
     <section>
       <h2>Challenges</h2>
-      <ul>
-        <li>Attention requires global communication among all positions, which is hard to parallelize.</li>
-        <li>Variable-length sequences can cause load imbalance across nodes.</li>
-      </ul>
+      <p>
+        Attention mechanisms require global interaction between queries, keys, and values (three different matrices), which means that even when computation is distributed, nodes must frequently exchange data—creating potential communication bottlenecks. Unlike operations such as convolution, attention cannot be easily split into fully independent parts because each position in the sequence will depend on all others. 
+      </p>
+      <p>
+        In addition, varying sequence lengths may lead to imbalanced workloads across processes, which reduces overall efficiency. To address this, we will explore optimization strategies to mitigate the resulting bottlenecks.
+      </p>
+      <p>
+        We hope to gain deeper insight into the factors that impact communication bottlenecks and bandwidth usage, helping us build intuition for optimizing communication. At the same time, we want to enhance our understanding of tensor parallelism and explore more efficient model partitioning strategies to reduce the performance impact of communication bottlenecks like AllReduce during inference.
+      </p>
     </section>
 
     <section>
